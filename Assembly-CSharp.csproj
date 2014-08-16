@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\CheckForThings.cs" />
      <Compile Include="Assets\Scripts\FollowTrackingCamera.cs" />
      <Compile Include="Assets\Scripts\PlayerCode.cs" />
+     <Compile Include="Assets\Scripts\RailEdge.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCamera.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraAnchor.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraUtil.cs" />
