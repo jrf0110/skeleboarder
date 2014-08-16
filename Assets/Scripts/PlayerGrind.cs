@@ -16,8 +16,10 @@ public class PlayerGrind : MonoBehaviour {
     player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
   }
   
-  // Update is called once per frame
-  void Update () {
+  public void FixedUpdate () {
+    if ( isGrinding() ){
+      updatePlayerVelocity();
+    }
 	}
 
   void OnPlayerJump( object sender, System.EventArgs e ){
@@ -26,6 +28,19 @@ public class PlayerGrind : MonoBehaviour {
 
   public bool isGrinding(){
     return grinding;
+  }
+
+  public void updatePlayerVelocity(){
+    float dx = rigidbody2D.velocity.x;
+
+    rigidbody2D.velocity = new Vector2(
+      Mathf.Clamp(
+        ( ( dx >= 0 ? 1 : -1 ) * baseSpeed + dx ) * speedFactor
+      , -maxSpeed
+      , maxSpeed
+      )
+    , 0
+    );
   }
 
   public void enterGrindMode(){
@@ -38,15 +53,7 @@ public class PlayerGrind : MonoBehaviour {
 
     transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
 
-    float dx = rigidbody2D.velocity.x;
-    rigidbody2D.velocity = new Vector2(
-      Mathf.Clamp(
-        ( ( dx >= 0 ? 1 : -1 ) * baseSpeed + dx ) * speedFactor
-      , -maxSpeed
-      , maxSpeed
-      )
-    , 0
-    );
+    updatePlayerVelocity();
   }
 
   public void leaveGrindMode(){
