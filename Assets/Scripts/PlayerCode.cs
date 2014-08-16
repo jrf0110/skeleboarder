@@ -13,7 +13,10 @@ public class PlayerCode : MonoBehaviour {
 	private bool canHorizontalInput = true;
 	public bool timeToDisableHorizontalInput;
 	private float t = 0;
-	public PlayerGrind grinder;
+	private PlayerGrind grinder;
+
+	// Previous horizontal input from last update
+	private float prevHInput;
 
 	//Jumping
 	public bool touchingPlatform;
@@ -169,6 +172,22 @@ public class PlayerCode : MonoBehaviour {
 
 			transform.Rotate(0, 0, verticalInput * rotationSpeed * Time.deltaTime);
 		}
+
+		if ( Input.GetAxis("Horizontal") < 0 && prevHInput > 0 ){
+			TurnLeft();
+		} else if ( Input.GetAxis("Horizontal") > 0 && prevHInput < 0 ) {
+			TurnRight();
+		}
+
+		prevHInput = horizontalInput;
+	}
+
+	public void TurnLeft(){
+		transform.rotation = Quaternion.AngleAxis(180, Vector3.up);
+	}
+
+	public void TurnRight(){
+		transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
 	}
 
 	public void bumpHorizontal( float x ){
