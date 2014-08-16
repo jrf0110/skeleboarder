@@ -16,8 +16,6 @@ public class BaseSoundManager : MonoBehaviour
 	public AudioClip hitEnemy;
 	public AudioClip killEnemy;
 
-
-
 	// declare baseSoundManagerInstance
 	void OnEnable()
 	{
