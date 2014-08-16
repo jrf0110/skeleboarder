@@ -25,7 +25,7 @@ public class PlayerCode : MonoBehaviour {
 
 	//Life Stuff
   public bool isActive;
-	public int health;
+	public int health = 100;
 
 	//Animation Stuff
 	//private tk2dSpriteAnimator playerAnimator;
@@ -139,7 +139,7 @@ public class PlayerCode : MonoBehaviour {
 				dubbaJump = false;
 			}
 
-			print ("rotate");
+			//print ("rotate");
 			transform.Rotate(0, 0, verticalInput * -rotationSpeed * Time.deltaTime);
 		}
 	}
