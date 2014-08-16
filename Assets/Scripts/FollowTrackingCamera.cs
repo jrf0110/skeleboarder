@@ -2,6 +2,8 @@
 
 public class FollowTrackingCamera : MonoBehaviour
 {
+	public float upness = 5f;
+
 	// Camera target to look at.
 	public Transform target;
 	
@@ -38,6 +40,8 @@ public class FollowTrackingCamera : MonoBehaviour
 		
 		// Setup our default camera.  We set the zoom result to be our default position.
 		zoomResult = new Vector3(0f, height, -distance);
+
+		gameObject.transform.position += Vector3.up * upness;
 	}
 	
 	void LateUpdate(){
@@ -79,6 +83,7 @@ public class FollowTrackingCamera : MonoBehaviour
 		// Set the camera position reference.
 		targetAdjustedPosition = rotationResult * zoomResult;
 		transform.position = target.position + targetAdjustedPosition;
+		gameObject.transform.position += Vector3.up * upness;
 		
 		// Face the desired position.
 		transform.LookAt(target);
