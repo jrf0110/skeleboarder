@@ -19,6 +19,7 @@ public class PlayerCode : MonoBehaviour {
 	public LayerMask whatIsGround;
 	public float jumpForce = 300f;
 	public bool dubbaJump;
+	//private bool thisSoundHasPlayed;
 
 	//Rotation Stuff
 	public float rotationSpeed = 150.0f;
@@ -67,6 +68,12 @@ public class PlayerCode : MonoBehaviour {
 		{	
 			if(Input.GetButtonDown("Jump"))
 			{
+				//if(!thisSoundHasPlayed)
+				//{
+					AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.jump, 1f, "JumpSound" );
+				//	thisSoundHasPlayed = true;
+				//}
+
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
 				rigidbody2D.AddForce(new Vector2(0, jumpForce));
 
@@ -140,8 +147,7 @@ public class PlayerCode : MonoBehaviour {
 				dubbaJump = false;
 			}
 
-			//print ("rotate");
-			transform.Rotate(0, 0, verticalInput * -rotationSpeed * Time.deltaTime);
+			transform.Rotate(0, 0, verticalInput * rotationSpeed * Time.deltaTime);
 		}
 	}
 
