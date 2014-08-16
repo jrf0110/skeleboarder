@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerCode : MonoBehaviour {
 
 	//Movement Stuff
-    private float horizontalInput, verticalInput;
+  private float horizontalInput, verticalInput;
 	public float maxSpeed = 10f;
 	public float maxSpeedHolder;
 	private bool horizontalInputing;
@@ -25,8 +25,8 @@ public class PlayerCode : MonoBehaviour {
 	public float rotationSpeed = 150.0f;
 
 	//Life Stuff
-    public bool isActive;
-	public int health;
+  public bool isActive;
+	public int health = 100;
 
 	//Animation Stuff
 	//private tk2dSpriteAnimator playerAnimator;
@@ -109,9 +109,10 @@ public class PlayerCode : MonoBehaviour {
 
 	//==================================================
 	void Update () 
-    {
+  {
+  	//print(rigidbody2D.velocity.x + ", " + rigidbody2D.velocity.y);
 		if (isActive)
-        {
+    {
 			if(horizontalInput != 0) horizontalInputing = true;
 			else horizontalInputing = false;
 
@@ -123,8 +124,8 @@ public class PlayerCode : MonoBehaviour {
 			//UpdateAnimation();
 
 			Jumping();
-		 }
-}
+		}
+	}
 	
 	//==================END=UPDATE======================
 
@@ -148,5 +149,10 @@ public class PlayerCode : MonoBehaviour {
 
 			transform.Rotate(0, 0, verticalInput * rotationSpeed * Time.deltaTime);
 		}
+	}
+
+	public void bumpHorizontal( float x ){
+		Debug.Log("Bump Back: " + x);
+		rigidbody2D.AddForce( new Vector2( x, 0 ) );
 	}
 }  //Class
