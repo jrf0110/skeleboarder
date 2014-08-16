@@ -13,7 +13,7 @@ public class PlayerCode : MonoBehaviour {
 	private bool canHorizontalInput = true;
 	public bool timeToDisableHorizontalInput;
 	private float t = 0;
-	public PlayerGrind grinder;
+	private PlayerGrind grinder;
 
 	//Jumping
 	public bool touchingPlatform;
