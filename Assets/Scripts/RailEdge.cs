@@ -17,6 +17,7 @@ public class RailEdge : MonoBehaviour {
 	}
 
   void OnCollisionEnter2D ( Collision2D collision ){
+    // Damage and bump back player when they hit the edge
     if ( collision.gameObject.tag == "Player" ){
       PlayerCode player = collision.gameObject.GetComponent<PlayerCode>();
       player.health -= damage;

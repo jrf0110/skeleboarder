@@ -3,44 +3,60 @@ using System.Collections;
 
 public class PlayerGrind : MonoBehaviour {
   public float rotation;
-  public bool isGrinding;
+  public float maxSpeed = 10f;
+  public float baseSpeed = 5f;
+  public float speedFactor = 0.3f;
+  public bool grinding;
+  private PlayerCode player;
 
 	// Use this for initialization
 	void Start () {
-	 isGrinding = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+    player = GetComponent<PlayerCode>();
+    grinding = false;
+    player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
+  }
+  
+  // Update is called once per frame
+  void Update () {
 	}
 
+  void OnPlayerJump( object sender, System.EventArgs e ){
+    print("Grind: Player Jump");
+  }
+
+  public bool isGrinding(){
+    return grinding;
+  }
+
   public void enterGrindMode(){
-    if ( isGrinding ){
+    if ( isGrinding() ){
       return;
     }
 
     Debug.Log("Is Grinding");
-    isGrinding = true;
+    grinding = true;
 
     transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
+
+    float dx = rigidbody2D.velocity.x;
+    rigidbody2D.velocity = new Vector2(
+      Mathf.Clamp(
+        ( ( dx >= 0 ? 1 : -1 ) * baseSpeed + dx ) * speedFactor
+      , -maxSpeed
+      , maxSpeed
+      )
+    , 0
+    );
   }
 
   public void leaveGrindMode(){
-    if ( !isGrinding ){
+    if ( !isGrinding() ){
       return;
     }
 
     Debug.Log("Leaving Grinding");
-    isGrinding = false;
+    grinding = false;
 
     transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
-
-    // transform.rotation.Set(
-    //   transform.rotation.x
-    // , 0
-    // , transform.rotation.z
-    // , transform.rotation.w
-    // );
   }
 }
