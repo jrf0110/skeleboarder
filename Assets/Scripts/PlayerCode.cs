@@ -103,6 +103,7 @@ public class PlayerCode : MonoBehaviour {
 	//==================================================
 	void Update () 
   {
+  	//print(rigidbody2D.velocity.x + ", " + rigidbody2D.velocity.y);
 		if (isActive)
     {
 			if(horizontalInput != 0) horizontalInputing = true;
@@ -142,5 +143,10 @@ public class PlayerCode : MonoBehaviour {
 			//print ("rotate");
 			transform.Rotate(0, 0, verticalInput * -rotationSpeed * Time.deltaTime);
 		}
+	}
+
+	public void bumpHorizontal( float x ){
+		Debug.Log("Bump Back: " + x);
+		rigidbody2D.AddForce( new Vector2( x, 0 ) );
 	}
 }  //Class

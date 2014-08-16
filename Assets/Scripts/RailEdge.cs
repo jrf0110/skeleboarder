@@ -4,6 +4,7 @@ using System.Collections;
 public class RailEdge : MonoBehaviour {
 
   public int damage = 10;
+  public float bumpBack = 10;
   private PlayerCode player;
 
 	// Use this for initialization
@@ -20,7 +21,7 @@ public class RailEdge : MonoBehaviour {
     if ( collision.gameObject.tag == "Player" ){
       player = collision.gameObject.GetComponent<PlayerCode>();
       player.health -= damage;
-      Debug.Log("Player! Health: " + player.health);
+      player.bumpHorizontal( -bumpBack );
     }
   }
 }
