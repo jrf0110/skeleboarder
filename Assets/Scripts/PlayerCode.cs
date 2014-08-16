@@ -4,7 +4,7 @@ using System.Collections;
 public class PlayerCode : MonoBehaviour {
 
 	//Movement Stuff
-    private float horizontalInput, verticalInput;
+  private float horizontalInput, verticalInput;
 	public float maxSpeed = 10f;
 	public float maxSpeedHolder;
 	private bool horizontalInputing;
@@ -24,7 +24,7 @@ public class PlayerCode : MonoBehaviour {
 	public float rotationSpeed = 150.0f;
 
 	//Life Stuff
-    public bool isActive;
+  public bool isActive;
 	public int health;
 
 	//Animation Stuff
@@ -102,9 +102,9 @@ public class PlayerCode : MonoBehaviour {
 
 	//==================================================
 	void Update () 
-    {
+  {
 		if (isActive)
-        {
+    {
 			if(horizontalInput != 0) horizontalInputing = true;
 			else horizontalInputing = false;
 
@@ -116,8 +116,8 @@ public class PlayerCode : MonoBehaviour {
 			//UpdateAnimation();
 
 			Jumping();
-		 }
-}
+		}
+	}
 	
 	//==================END=UPDATE======================
 
