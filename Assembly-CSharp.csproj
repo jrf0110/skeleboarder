@@ -48,10 +48,14 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Audio\AudioHelper.cs" />
      <Compile Include="Assets\Scripts\Audio\BaseSoundManager.cs" />
+     <Compile Include="Assets\Scripts\Audio\Level1MusicManager.cs" />
+     <Compile Include="Assets\Scripts\Audio\MuteSound.cs" />
      <Compile Include="Assets\Scripts\CheckForThings.cs" />
      <Compile Include="Assets\Scripts\FollowTrackingCamera.cs" />
+     <Compile Include="Assets\Scripts\Obstacle1Script.cs" />
      <Compile Include="Assets\Scripts\PlayerCode.cs" />
      <Compile Include="Assets\Scripts\PlayerGrind.cs" />
+     <Compile Include="Assets\Scripts\Powerup1Script.cs" />
      <Compile Include="Assets\Scripts\RailEdge.cs" />
      <Compile Include="Assets\Scripts\RailGrind.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCamera.cs" />
