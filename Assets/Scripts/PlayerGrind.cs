@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerGrind : MonoBehaviour {
-  public float rotation = 50;
+  public float rotation;
   public bool isGrinding;
 
 	// Use this for initialization
@@ -23,12 +23,7 @@ public class PlayerGrind : MonoBehaviour {
     Debug.Log("Is Grinding");
     isGrinding = true;
 
-    transform.rotation.Set(
-      transform.rotation.x
-    , rotation
-    , transform.rotation.z
-    , transform.rotation.w
-    );
+    transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
   }
 
   public void leaveGrindMode(){
@@ -39,11 +34,13 @@ public class PlayerGrind : MonoBehaviour {
     Debug.Log("Leaving Grinding");
     isGrinding = false;
 
-    transform.rotation.Set(
-      transform.rotation.x
-    , 0
-    , transform.rotation.z
-    , transform.rotation.w
-    );
+    transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+
+    // transform.rotation.Set(
+    //   transform.rotation.x
+    // , 0
+    // , transform.rotation.z
+    // , transform.rotation.w
+    // );
   }
 }
