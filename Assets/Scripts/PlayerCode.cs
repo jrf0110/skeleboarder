@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 
+public delegate void PlayerActionEventHandler(object sender, System.EventArgs e);
+
 public class PlayerCode : MonoBehaviour {
 
 	//Movement Stuff
@@ -11,6 +13,7 @@ public class PlayerCode : MonoBehaviour {
 	private bool canHorizontalInput = true;
 	public bool timeToDisableHorizontalInput;
 	private float t = 0;
+	public PlayerGrind grinder;
 
 	//Jumping
 	public bool touchingPlatform;
@@ -30,16 +33,21 @@ public class PlayerCode : MonoBehaviour {
 
 	//Animation Stuff
 	//private tk2dSpriteAnimator playerAnimator;
+
+	// Events
+	public event PlayerActionEventHandler PlayerJump;
 	
     // Use this for initialization
     void Start()
     {
-		maxSpeedHolder = maxSpeed;
+			maxSpeedHolder = maxSpeed;
 
-		isActive = true;
+			isActive = true;
 
-		//Animation
-		//playerAnimator = GetComponent<tk2dSpriteAnimator>();
+			//Animation
+			//playerAnimator = GetComponent<tk2dSpriteAnimator>();
+
+			grinder = GetComponent<PlayerGrind>();
     }
 	
 
@@ -76,6 +84,10 @@ public class PlayerCode : MonoBehaviour {
 
 				rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
 				rigidbody2D.AddForce(new Vector2(0, jumpForce));
+
+				if (PlayerJump != null){
+					PlayerJump( this, System.EventArgs.Empty );
+				}
 
 				if(!dubbaJump && !touchingPlatform)
 				{
@@ -140,7 +152,7 @@ public class PlayerCode : MonoBehaviour {
 		{
 			touchingPlatform = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
-			if(horizontalInputing && canHorizontalInput) rigidbody2D.velocity = new Vector2(horizontalInput*maxSpeed, rigidbody2D.velocity.y);
+			if(horizontalInputing && canHorizontalInput && !grinder.isGrinding()) rigidbody2D.velocity = new Vector2(horizontalInput*maxSpeed, rigidbody2D.velocity.y);
 
 			if(touchingPlatform) 
 			{

@@ -5,7 +5,6 @@ public class RailEdge : MonoBehaviour {
 
   public int damage = 10;
   public float bumpBack = 10;
-  private PlayerCode player;
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +17,9 @@ public class RailEdge : MonoBehaviour {
 	}
 
   void OnCollisionEnter2D ( Collision2D collision ){
+    // Damage and bump back player when they hit the edge
     if ( collision.gameObject.tag == "Player" ){
-      player = collision.gameObject.GetComponent<PlayerCode>();
+      PlayerCode player = collision.gameObject.GetComponent<PlayerCode>();
       player.health -= damage;
       player.bumpHorizontal( -bumpBack );
     }
