@@ -8,6 +8,7 @@ public class PlayerGrind : MonoBehaviour {
   public float speedFactor = 0.3f;
   public bool grinding;
   private PlayerCode player;
+  private Quaternion prevRotation;
 
 	// Use this for initialization
 	void Start () {
@@ -51,6 +52,7 @@ public class PlayerGrind : MonoBehaviour {
     Debug.Log("Is Grinding");
     grinding = true;
 
+    prevRotation = transform.rotation;
     transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
 
     updatePlayerVelocity();
@@ -64,6 +66,6 @@ public class PlayerGrind : MonoBehaviour {
     Debug.Log("Leaving Grinding");
     grinding = false;
 
-    transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+    transform.rotation = prevRotation;
   }
 }
