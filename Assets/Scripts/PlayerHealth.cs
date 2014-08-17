@@ -8,12 +8,13 @@ public class PlayerHealth : MonoBehaviour {
   public float maxHealth            = 100f;   // The player's max health
   public float repeatDmgPeriod      = 2f;     // Number of seconds between damage
 
-  private float lastHitTime = Time.time;      // The time at which the player was last hit.
+  
+  private float lastHitTime;                  // The time at which the player was last hit.
 
 	public GameObject boneAuraHolder;
 
   void Awake (){
-
+    lastHitTime = -repeatDmgPeriod;
   }
 
   void OnCollisionEnter2D ( Collision2D col ){
@@ -22,7 +23,8 @@ public class PlayerHealth : MonoBehaviour {
     if ( giver == null ) return;
 
     // Ensure we can still damage
-//    if ( Time.time <= lastHitTime + repeatDmgPeriod ) return;
+    print( Time.time + " <= " + lastHitTime + " + " + repeatDmgPeriod );
+    if ( Time.time <= lastHitTime + repeatDmgPeriod ) return;
 
     TakeDamage( giver.damageAmount );
     lastHitTime = Time.time;
@@ -34,7 +36,7 @@ public class PlayerHealth : MonoBehaviour {
     if ( giver == null ) return;
     
     // Ensure we can still damage
-    //if ( Time.time <= lastHitTime + repeatDmgPeriod ) return;
+    if ( Time.time <= lastHitTime + repeatDmgPeriod ) return;
     
     TakeDamage( giver.damageAmount );
     lastHitTime = Time.time;
