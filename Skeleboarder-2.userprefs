@@ -1,18 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Audio/Level1MusicManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Stablization.cs">
     <Files>
-      <File FileName="Assets/Scripts/ParticleDestroyer.cs" Line="4" Column="31" />
-      <File FileName="Assets/Scripts/Powerup1Script.cs" Line="8" Column="39" />
-      <File FileName="Assets/Scripts/Stablization.cs" Line="54" Column="75" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="11" Column="1" />
-      <File FileName="Assets/Scripts/PlayerDamager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Audio/BaseSoundManager.cs" Line="22" Column="23" />
-      <File FileName="Assets/Scripts/DestroyMeOnTouch.cs" Line="6" Column="43" />
-      <File FileName="Assets/Scripts/Audio/Level1MusicManager.cs" Line="19" Column="84" />
+      <File FileName="Assets/Scripts/Audio/Level1MusicManager.cs" Line="19" Column="85" />
       <File FileName="Assets/Scripts/PlayerControl.cs" Line="104" Column="5" />
       <File FileName="Assets/Scripts/PlayerCodeVersion2.cs" Line="23" Column="1" />
       <File FileName="Assets/Scripts/CameraZoomer.cs" Line="6" Column="5" />
+      <File FileName="Assets/Scripts/Stablization.cs" Line="1" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

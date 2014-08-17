@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\CheckForThings.cs" />
      <Compile Include="Assets\Scripts\DestroyMeOnTouch.cs" />
      <Compile Include="Assets\Scripts\FollowTrackingCamera.cs" />
+     <Compile Include="Assets\Scripts\MessageFlasher.cs" />
      <Compile Include="Assets\Scripts\ParticleDestroyer.cs" />
      <Compile Include="Assets\Scripts\PlayerCodeVersion2.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
