@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour {
 	private bool grounded   		= false;    // Whether or not the player is grounded.
 	//private Animator anim;								// Reference to the player's animator component.
 	private Transform groundCheck;					// A position marking where to check if the player is grounded.
+	private PlayerGrind pGrind;
 
 	// Events
 	public event PlayerActionHandler PlayerBeforeJump;
@@ -31,6 +32,7 @@ public class PlayerControl : MonoBehaviour {
 	
 	void Awake (){
 		groundCheck = transform.Find("GroundCheck");
+		pGrind = GetComponent<PlayerGrind>();
 		//anim = GetComponentInChildren<Animator>();
 
 		//Animation
@@ -97,7 +99,8 @@ public class PlayerControl : MonoBehaviour {
 		}
 
 		// Handle rotation
-		if ( v > 0 || v < 0 ){
+		// Do not rotate while grinding
+		if ( !pGrind.isGrinding() && (v > 0 || v < 0) ){
 			transform.Rotate(
 				0
 			, 0

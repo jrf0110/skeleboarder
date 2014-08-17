@@ -8,10 +8,12 @@ public class Stablization : MonoBehaviour {
 	Vector3 axis; 
 	float angle;
 	public float stablizationAmount = .5f;
+	private PlayerGrind pGrind;
 
 	void Start()
 	{
 		rigidbody2D.centerOfMass = new Vector3(0,stablizationAmount,0);
+		pGrind = GetComponent<PlayerGrind>();
 	}
 	
 	void RotateToPerpendicular()
@@ -33,6 +35,8 @@ public class Stablization : MonoBehaviour {
 	
 	void Update () 
 	{
-		RotateToPerpendicular ();
+		if ( !pGrind.isGrinding() ){
+			RotateToPerpendicular ();
+		}
 	}
 }
