@@ -9,6 +9,10 @@ public class Stablization : MonoBehaviour {
 	float angle;
 	public float stablizationAmount = .5f;
 
+	void Start()
+	{
+		rigidbody2D.centerOfMass = new Vector3(0,stablizationAmount,0);
+	}
 	
 	void RotateToPerpendicular()
 	{
@@ -29,7 +33,6 @@ public class Stablization : MonoBehaviour {
 	
 	void Update () 
 	{
-		rigidbody2D.centerOfMass = new Vector3(0,stablizationAmount,0);
 		RotateToPerpendicular ();
 	}
 }
