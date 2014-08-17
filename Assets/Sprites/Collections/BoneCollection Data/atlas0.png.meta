@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 25ef7757429e54402a68df775f0ee6e4
+guid: 95a228def94b043769038c174018efd2
 TextureImporter:
   fileIDToRecycleName:
     21300000: atlas0
@@ -39,7 +39,7 @@ TextureImporter:
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   textureType: 8
   buildTargetSettings: []
   spriteSheet:

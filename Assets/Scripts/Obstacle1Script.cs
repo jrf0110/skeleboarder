@@ -8,7 +8,12 @@ public class Obstacle1Script : MonoBehaviour {
 		if (other.gameObject.tag == "Player") 
 		{
 			AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.gotHit, 1f, "collideSoundObject" );
-			Destroy(gameObject);
+
+			//Do some damage stuff
+
+			//Turn on the particle effect
+
+			//Destroy(gameObject);
 		}
 	}
 }
