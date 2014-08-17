@@ -3,17 +3,17 @@ using System.Collections;
 
 public class PlayerGrind : MonoBehaviour {
   public float rotation;
-  public float maxSpeed = 10f;
-  public float baseSpeed = 5f;
-  public float speedFactor = 0.3f;
+  public float maxSpeed;
+  public float baseSpeed;
+  public float speedFactor;
   public bool grinding;
-  //private PlayerCode player;
+  private Quaternion prevRotation;
 
 	// Use this for initialization
 	void Start () {
-    //player = GetComponent<Skate>();
+    // player = GetComponent<PlayerCode>();
+    // player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
     grinding = false;
-    //player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
   }
   
   public void FixedUpdate () {
@@ -51,7 +51,13 @@ public class PlayerGrind : MonoBehaviour {
     Debug.Log("Is Grinding");
     grinding = true;
 
-    transform.rotation = Quaternion.AngleAxis(rotation, Vector3.up);
+    float dx = rigidbody2D.velocity.x;
+    prevRotation = transform.rotation;
+
+    transform.rotation = Quaternion.AngleAxis(
+      ( dx >= 0 ? 1 : -1 ) * rotation
+    , Vector3.up
+    );
 
     updatePlayerVelocity();
   }
@@ -64,6 +70,6 @@ public class PlayerGrind : MonoBehaviour {
     Debug.Log("Leaving Grinding");
     grinding = false;
 
-    transform.rotation = Quaternion.AngleAxis(0, Vector3.up);
+    transform.rotation = prevRotation;
   }
 }

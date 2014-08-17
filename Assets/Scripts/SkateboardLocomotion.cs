@@ -112,11 +112,13 @@ public class SkateboardLocomotion : MonoBehaviour {
 	{
 		if(horizontalInput != 0) horizontalInputing = true;
 		else horizontalInputing = false;
+
+		horizontalInputing = false;
 		
 		horizontalInput = Input.GetAxis("Horizontal");
 		verticalInput = Input.GetAxis("Vertical");
 		
-		Jumping();
+		//Jumping();
 
 		RotateToPerpendicular ();
 	}
