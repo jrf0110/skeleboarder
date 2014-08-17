@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SkateboardLocomotion : MonoBehaviour {
+public class Stablization : MonoBehaviour {
 
 	//Movement Stuff
 	private float horizontalInput, verticalInput;
