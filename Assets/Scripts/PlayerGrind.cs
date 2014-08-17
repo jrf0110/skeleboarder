@@ -8,11 +8,12 @@ public class PlayerGrind : MonoBehaviour {
   public float speedFactor;
   public bool grinding;
   private Quaternion prevRotation;
+  private PlayerControl pControl;
 
 	// Use this for initialization
 	void Start () {
-    // player = GetComponent<PlayerCode>();
-    // player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
+    pControl = GetComponent<PlayerControl>();
+    pControl.PlayerBeforeJump += OnPlayerBeforeJump;
     grinding = false;
   }
   
@@ -22,8 +23,9 @@ public class PlayerGrind : MonoBehaviour {
     }
 	}
 
-  void OnPlayerJump( object sender, System.EventArgs e ){
-    print("Grind: Player Jump");
+  public void OnPlayerBeforeJump( object sender ){
+    print("OnPlayerBeforeJump");
+    leaveGrindMode();
   }
 
   public bool isGrinding(){
