@@ -23,7 +23,6 @@ public class PlayerHealth : MonoBehaviour {
     if ( giver == null ) return;
 
     // Ensure we can still damage
-    print( Time.time + " <= " + lastHitTime + " + " + repeatDmgPeriod );
     if ( Time.time <= lastHitTime + repeatDmgPeriod ) return;
 
     TakeDamage( giver.damageAmount );
