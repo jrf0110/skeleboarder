@@ -2,25 +2,14 @@
 using System.Collections;
 
 public class Stablization : MonoBehaviour {
-
-	public bool touchingPlatform;
-	public Transform groundCheck;
-	private float groundRadius = 0.1f;
-	public LayerMask whatIsGround;
-
 	//Physics stuff
 	Ray ray = new Ray(); 
 	RaycastHit hit; 
 	Vector3 axis; 
 	float angle;
-	public Transform centerOfMass;
-	
-	// Use this for initialization
-	void Start()
-	{
-		rigidbody2D.centerOfMass = centerOfMass.position - new Vector3(0,.5f,0);
-	}
+	public float stablizationAmount = .5f;
 
+	
 	void RotateToPerpendicular()
 	{
 		ray.origin = gameObject.transform.position;
@@ -40,11 +29,7 @@ public class Stablization : MonoBehaviour {
 	
 	void Update () 
 	{
+		rigidbody2D.centerOfMass = new Vector3(0,stablizationAmount,0);
 		RotateToPerpendicular ();
-	}
-
-	void FixedUpdate()
-	{	
-		touchingPlatform = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 	}
 }

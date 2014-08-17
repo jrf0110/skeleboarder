@@ -10,7 +10,8 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector]
 	public bool jumping     		= false;    // Condition for whether the player should jump.
 
-	public float jumpMoveFactor = 0.1f;		// Amount of control the player has of dx in the air
+	// Amount of control the player has of dx in the air
+	public float jumpMoveFactor = 0.1f;
 
 	public float moveForce  		= 100f;     // Amount of force added to move the player left and right.
 	public float maxSpeed   		= 10f;      // The fastest the player can travel in the x axis.
@@ -18,30 +19,38 @@ public class PlayerControl : MonoBehaviour {
 	public float rotationSpeed 	= 300.0f;   // Rotation speed
 
 	private bool grounded   		= false;    // Whether or not the player is grounded.
+	//private Animator anim;								// Reference to the player's animator component.
 	private Transform groundCheck;					// A position marking where to check if the player is grounded.
-	private Animator anim;									// Reference to the player's animator component.
 
 	// Events
 	public event PlayerActionHandler PlayerBeforeJump;
 	public event PlayerActionHandler PlayerAfterJump;
 
+	//Animation Stuff
+	private tk2dSpriteAnimator playerAnimator;
+	
 	void Awake (){
 		groundCheck = transform.Find("GroundCheck");
-		anim = GetComponent<Animator>();
+		//anim = GetComponentInChildren<Animator>();
+
+		//Animation
+		playerAnimator = GetComponentInChildren<tk2dSpriteAnimator>();
 	}
-	
+
 	void Update () {
 		// The player is grounded if a linecast to the
 		// groundcheck position hits anything on the ground layer
 		grounded = Physics2D.Linecast(
 			transform.position,
-			groundCheck.position,
+			groundCheck.transform.position,
 			1 << LayerMask.NameToLayer("Ground")
 		);
 
 		if ( Input.GetButtonDown("Jump") && grounded ){
 			jumping = true;
 		}
+
+		UpdateAnimation ();
 	}
 
 	void FixedUpdate () {
@@ -114,5 +123,21 @@ public class PlayerControl : MonoBehaviour {
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
+	}
+	
+	void UpdateAnimation(){
+		if ( playerAnimator == null ) return;
+
+		float horizontalInput = Input.GetAxis("Horizontal");
+
+		if ( grounded && horizontalInput == 0 ){
+			playerAnimator.Play("Idle");
+		} else if ( !grounded && rigidbody2D.velocity.y != 0 ){
+			playerAnimator.Play("Jump");
+		} else if ( !grounded && rigidbody2D.velocity.x != 0 ){
+			playerAnimator.Play("Idle");
+		} else if (grounded &&  Mathf.Abs( horizontalInput) > 0){
+			playerAnimator.Play("Kicking");
+		}
 	}
 }
