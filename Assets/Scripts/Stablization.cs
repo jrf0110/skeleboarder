@@ -15,12 +15,6 @@ public class Stablization : MonoBehaviour {
 	float angle;
 	public Transform centerOfMass;
 	
-	//Sound Stuff
-	private bool thisSoundHasPlayed;
-	
-	//Rotation Stuff
-	public float rotationSpeed = 300.0f;
-	
 	// Use this for initialization
 	void Start()
 	{
