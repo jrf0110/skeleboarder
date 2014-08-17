@@ -155,7 +155,10 @@ public class PlayerCode : MonoBehaviour {
 		{
 			touchingPlatform = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 
-			if(horizontalInputing && canHorizontalInput && !grinder.isGrinding()) rigidbody2D.velocity = new Vector2(horizontalInput*maxSpeed, rigidbody2D.velocity.y);
+			if (horizontalInputing && canHorizontalInput && !grinder.isGrinding()){
+				//rigidbody2D.AddForce( new Vector2(horizontalInput*maxSpeed, rigidbody2D.velocity.y) );
+			  rigidbody2D.velocity = new Vector2(horizontalInput*maxSpeed, rigidbody2D.velocity.y);
+			}
 
 			if(touchingPlatform) 
 			{
@@ -185,5 +188,9 @@ public class PlayerCode : MonoBehaviour {
 	public void bumpHorizontal( float x ){
 		Debug.Log("Bump Back: " + x);
 		rigidbody2D.AddForce( new Vector2( x, 0 ) );
+	}
+
+	public void FlashDamageIndication(){
+		animation.Play("Player Flash Damage.anim");
 	}
 }  //Class
