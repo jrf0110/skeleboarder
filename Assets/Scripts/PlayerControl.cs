@@ -142,4 +142,7 @@ public class PlayerControl : MonoBehaviour {
 			playerAnimator.Play("Kicking");
 		}
 	}
+
+	
+
 }
