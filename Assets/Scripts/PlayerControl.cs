@@ -98,18 +98,17 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
 
-<<<<<<< HEAD
+
 		horizontalInput = h;
-=======
-		// Handle rotation
-		if ( v > 0 || v < 0 ){
-			transform.Rotate(
-				0
-			, 0
-			, v * rotationSpeed * Time.deltaTime * ( facingRight ? 1 : -1 )
-			);
-		}
->>>>>>> 533cf8e56f98bdf6b59e099827b56ed94d93109b
+
+//		// Handle rotation
+//		if ( v > 0 || v < 0 ){
+//			transform.Rotate(
+//				0
+//			, 0
+//			, v * rotationSpeed * Time.deltaTime * ( facingRight ? 1 : -1 )
+//			);
+//		}
 	}
 
 	void TurnRight (){
