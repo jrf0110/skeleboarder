@@ -10,7 +10,7 @@ public class RailEdge : MonoBehaviour {
     // Damage and bump back player when they hit the edge
     if ( collision.gameObject.tag == "Player" ){
       PlayerHealth pHealth = collision.gameObject.GetComponent<PlayerHealth>();
-      pHealth.TakeDamage( damage );
+      pHealth.TakeDamage( -damage );
       collision.gameObject.rigidbody2D.AddForce(
         new Vector2( -bumpBack, 0 )
       );
