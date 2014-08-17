@@ -19,6 +19,7 @@ public class BaseSoundManager : MonoBehaviour
 	public AudioClip getItem;
 	public AudioClip died;
 	public AudioClip gotHit;
+	public AudioClip linkGotItem;
 	public static GameObject level1MusicObject;
 
 	//public bool musicIsPlaying;

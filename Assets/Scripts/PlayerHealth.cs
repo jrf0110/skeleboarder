@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour {
 
   private float lastHitTime = 0;                  // The time at which the player was last hit.
 
+	public GameObject boneAuraHolder;
+
   void Awake (){
 
   }
@@ -34,11 +36,21 @@ public class PlayerHealth : MonoBehaviour {
     SetHealth( health + h );
   }
 
-  public void TakeDamage( float h ){
-    print("Taking Damage: " + h );
-    IncHealth( -h );
-	AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.gotHit, 1f, "collideSoundObject" );
-  }
+  public void TakeDamage( float h )
+	{
+    	print("Adjusting health by: " + h );
+    	IncHealth( h );
+		if (h < 0) {
+						AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.gotHit, 1f, "collideSoundObject");
+						Instantiate (boneAuraHolder, transform.position, Quaternion.identity);
+				} else {
+			AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.linkGotItem, 1f, "gotHealthSoundObject");
+				}
+  	}
+
+	public void Heal( float h ){
+		IncHealth( +h );
+	}
 
 	void OnTriggerEnter2D ( Collider2D col ){
 		// Does the collider have the PlayerDamager component?
