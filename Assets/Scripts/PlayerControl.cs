@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour {
 	public float moveForce  		= 100f;     // Amount of force added to move the player left and right.
 	public float maxSpeed   		= 10f;      // The fastest the player can travel in the x axis.
 	public float jumpForce  		= 100f;     // Amount of force added when the player jumps.
+	public float rotationSpeed 	= 300.0f;   // Rotation speed
 
 	private bool grounded   		= false;    // Whether or not the player is grounded.
 	private Transform groundCheck;					// A position marking where to check if the player is grounded.
@@ -45,13 +46,17 @@ public class PlayerControl : MonoBehaviour {
 
 	void FixedUpdate () {
 		float h = Input.GetAxis("Horizontal");
+		float v = Input.GetAxis("Vertical");
 
 		// If the player is changing direction
 		// (h has a different sign to velocity.x)
 		// or hasn't reached maxSpeed yet
 		if ( h * rigidbody2D.velocity.x < maxSpeed ){
+			print("Rotation " + transform.rotation.x);
 			rigidbody2D.AddForce(
-				Vector2.right * h * moveForce * ( !grounded ? jumpMoveFactor : 1 )
+				new Vector2(
+					1, 0
+				) * h * moveForce * ( !grounded ? jumpMoveFactor : 1 )
 			);
 		}
 
@@ -81,6 +86,15 @@ public class PlayerControl : MonoBehaviour {
 			if ( PlayerAfterJump != null ){
 				PlayerAfterJump( this );
 			}
+		}
+
+		// Handle rotation
+		if ( v > 0 || v < 0 ){
+			transform.Rotate(
+				0
+			, 0
+			, v * rotationSpeed * Time.deltaTime * ( facingRight ? 1 : -1 )
+			);
 		}
 	}
 
