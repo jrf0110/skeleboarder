@@ -61,10 +61,10 @@ public class PlayerControl : MonoBehaviour {
 		// (h has a different sign to velocity.x)
 		// or hasn't reached maxSpeed yet
 		if ( h * rigidbody2D.velocity.x < maxSpeed ){
-			print("Rotation " + transform.rotation.x);
+			print("x,y: " + Mathf.Cos(transform.rotation.x) + " " +  Mathf.Sin(transform.rotation.y));
 			rigidbody2D.AddForce(
 				new Vector2(
-					1, 0
+					Mathf.Cos(transform.rotation.x), Mathf.Sin(transform.rotation.y)
 				) * h * moveForce * ( !grounded ? jumpMoveFactor : 1 )
 			);
 		}
@@ -110,6 +110,7 @@ public class PlayerControl : MonoBehaviour {
 	void TurnRight (){
 		if ( facingRight ) return;
 
+		MessageFlasher.Flash("Turned Right!");
 		facingRight = true;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
@@ -119,6 +120,7 @@ public class PlayerControl : MonoBehaviour {
 	void TurnLeft (){
 		if ( !facingRight ) return;
 
+		MessageFlasher.Flash("Turned Left!");
 		facingRight = false;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
