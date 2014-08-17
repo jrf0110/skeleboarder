@@ -19,7 +19,7 @@ public class DestroyMeOnTouch : MonoBehaviour {
 
 			else
 			{
-				print ("asdf");
+				//print ("asdf");
 				//collider.isTrigger = true;
 				Destroy (gameObject, 1f);
 			}
@@ -31,16 +31,14 @@ public class DestroyMeOnTouch : MonoBehaviour {
 
 		if (col.gameObject.tag == "Player" || col.gameObject.tag == "Skateboard")
 		{
-			print ("colliders");
+			//print ("colliders");
 			if(!giveMeTimeToDie) Destroy (gameObject);
 			
 			else
 			{
-				print ("asdf");
+				//print ("asdf");
 				thisObjectsCollider.isTrigger = true;
 				Destroy (gameObject, 1f);
-
-				//asdfasdf
 			}
 		}
 	}

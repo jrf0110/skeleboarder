@@ -15,12 +15,17 @@ public class BaseSoundManager : MonoBehaviour
 	public AudioClip secret;
 	public AudioClip hitEnemy;
 	public AudioClip killEnemy;
-	public AudioClip level1Music;
 	public AudioClip getItem;
 	public AudioClip died;
 	public AudioClip gotHit;
 	public AudioClip linkGotItem;
+	public AudioClip cannonRamp;
+
+	//Music
+	public AudioClip level1Music;
+	public AudioClip titleMusic;
 	public static GameObject level1MusicObject;
+	public static GameObject titleMusicObject;
 
 	//public bool musicIsPlaying;
 

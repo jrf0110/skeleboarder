@@ -90,6 +90,7 @@ public class PlayerControl : MonoBehaviour {
 				PlayerBeforeJump( this );
 			}
 
+			AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.jump, 1f, "jumpSndObj");
 			rigidbody2D.AddForce( new Vector2( 0f, jumpForce ) );
 			jumping = false;
 
