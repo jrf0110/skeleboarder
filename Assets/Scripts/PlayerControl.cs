@@ -61,7 +61,6 @@ public class PlayerControl : MonoBehaviour {
 		// (h has a different sign to velocity.x)
 		// or hasn't reached maxSpeed yet
 		if ( h * rigidbody2D.velocity.x < maxSpeed ){
-			print("x,y: " + Mathf.Cos(transform.rotation.x) + " " +  Mathf.Sin(transform.rotation.y));
 			rigidbody2D.AddForce(
 				new Vector2(
 					Mathf.Cos(transform.rotation.x), Mathf.Sin(transform.rotation.y)
