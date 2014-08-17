@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public delegate void PlayerActionHandler( object sender );
+
 public class PlayerControl : MonoBehaviour {
 	[HideInInspector]
 	public bool facingRight 		= true;     // For determining which way the player is currently facing.
@@ -17,6 +19,10 @@ public class PlayerControl : MonoBehaviour {
 	private bool grounded   		= false;    // Whether or not the player is grounded.
 	private Transform groundCheck;					// A position marking where to check if the player is grounded.
 	private Animator anim;									// Reference to the player's animator component.
+
+	// Events
+	public event PlayerActionHandler PlayerBeforeJump;
+	public event PlayerActionHandler PlayerAfterJump;
 
 	void Awake (){
 		groundCheck = transform.Find("GroundCheck");
@@ -65,9 +71,16 @@ public class PlayerControl : MonoBehaviour {
 
 		// Handle jumping
 		if ( jumping ){
-			print("Is Jumping");
+			if ( PlayerBeforeJump != null ){
+				PlayerBeforeJump( this );
+			}
+
 			rigidbody2D.AddForce( new Vector2( 0f, jumpForce ) );
 			jumping = false;
+
+			if ( PlayerAfterJump != null ){
+				PlayerAfterJump( this );
+			}
 		}
 	}
 
