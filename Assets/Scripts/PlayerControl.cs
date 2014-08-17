@@ -17,30 +17,40 @@ public class PlayerControl : MonoBehaviour {
 	public float jumpForce  		= 100f;     // Amount of force added when the player jumps.
 
 	private bool grounded   		= false;    // Whether or not the player is grounded.
-	private Transform groundCheck;					// A position marking where to check if the player is grounded.
-	private Animator anim;									// Reference to the player's animator component.
+	//private Transform groundCheck;					// A position marking where to check if the player is grounded.
+	//private Animator anim;									// Reference to the player's animator component.
+	private GameObject groundCheck;
 
 	// Events
 	public event PlayerActionHandler PlayerBeforeJump;
 	public event PlayerActionHandler PlayerAfterJump;
 
-	void Awake (){
-		groundCheck = transform.Find("GroundCheck");
-		anim = GetComponent<Animator>();
-	}
+	//Animation Stuff
+	private tk2dSpriteAnimator playerAnimator;
+	private float horizontalInput;
 	
+	void Awake (){
+		groundCheck = GameObject.FindGameObjectWithTag("GroundCheck");
+		//anim = GetComponentInChildren<Animator>();
+
+		//Animation
+		playerAnimator = GetComponentInChildren<tk2dSpriteAnimator>();
+	}
+
 	void Update () {
 		// The player is grounded if a linecast to the
 		// groundcheck position hits anything on the ground layer
 		grounded = Physics2D.Linecast(
 			transform.position,
-			groundCheck.position,
+			groundCheck.transform.position,
 			1 << LayerMask.NameToLayer("Ground")
 		);
 
 		if ( Input.GetButtonDown("Jump") && grounded ){
 			jumping = true;
 		}
+
+		UpdateAnimation ();
 	}
 
 	void FixedUpdate () {
@@ -82,6 +92,8 @@ public class PlayerControl : MonoBehaviour {
 				PlayerAfterJump( this );
 			}
 		}
+
+		horizontalInput = h;
 	}
 
 	void TurnRight (){
@@ -101,4 +113,28 @@ public class PlayerControl : MonoBehaviour {
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
+	
+	void UpdateAnimation()
+	{
+		if(grounded && horizontalInput == 0) 
+		{
+			playerAnimator.Play("Idle");
+		}
+		
+		if (!grounded && rigidbody2D.velocity.y != 0)
+		{
+			playerAnimator.Play("Jump");
+		}
+
+		else if (!grounded &&  rigidbody2D.velocity.x != 0)
+		{
+			playerAnimator.Play("Idle");
+		}
+
+		if (grounded &&  Mathf.Abs( horizontalInput) > 0)
+		{
+			playerAnimator.Play("Kicking");
+		}
+	}
+
 }
