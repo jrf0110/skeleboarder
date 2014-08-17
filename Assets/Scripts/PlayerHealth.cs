@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour {
   public float maxHealth            = 100f;   // The player's max health
   public float repeatDmgPeriod      = 2f;     // Number of seconds between damage
 
-  private float lastHitTime = 0;                  // The time at which the player was last hit.
+  private float lastHitTime = Time.time;      // The time at which the player was last hit.
 
 	public GameObject boneAuraHolder;
 
@@ -28,6 +28,18 @@ public class PlayerHealth : MonoBehaviour {
     lastHitTime = Time.time;
   }
 
+  void OnTriggerEnter2D ( Collider2D col ){
+    // Does the collider have the PlayerDamager component?
+    PlayerDamager giver = col.GetComponent<PlayerDamager>();
+    if ( giver == null ) return;
+    
+    // Ensure we can still damage
+    //if ( Time.time <= lastHitTime + repeatDmgPeriod ) return;
+    
+    TakeDamage( giver.damageAmount );
+    lastHitTime = Time.time;
+  }
+
   public void SetHealth( float h ){
     health = Mathf.Min( h, maxHealth );
   }
@@ -36,33 +48,18 @@ public class PlayerHealth : MonoBehaviour {
     SetHealth( health + h );
   }
 
-  public void TakeDamage( float h )
-	{
-    	print("Adjusting health by: " + h );
-    	IncHealth( h );
+  public void TakeDamage( float h ){
+  	print("Adjusting health by: " + h );
+  	IncHealth( h );
 		if (h < 0) {
-						AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.gotHit, 1f, "collideSoundObject");
-						Instantiate (boneAuraHolder, transform.position, Quaternion.identity);
-				} else {
+			AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.gotHit, 1f, "collideSoundObject");
+			Instantiate (boneAuraHolder, transform.position, Quaternion.identity);
+		} else {
 			AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.linkGotItem, 1f, "gotHealthSoundObject");
-				}
-  	}
+		}
+	}
 
 	public void Heal( float h ){
 		IncHealth( +h );
 	}
-
-	void OnTriggerEnter2D ( Collider2D col ){
-		// Does the collider have the PlayerDamager component?
-		PlayerDamager giver = col.GetComponent<PlayerDamager>();
-		if ( giver == null ) return;
-		
-		// Ensure we can still damage
-		//if ( Time.time <= lastHitTime + repeatDmgPeriod ) return;
-		
-		TakeDamage( giver.damageAmount );
-		lastHitTime = Time.time;
-		}
-
-
 }

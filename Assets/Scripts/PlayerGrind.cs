@@ -2,17 +2,21 @@
 using System.Collections;
 
 public class PlayerGrind : MonoBehaviour {
-  public float rotation;
-  public float maxSpeed;
-  public float baseSpeed;
-  public float speedFactor;
+  public float rotation = 60f; // How much we rotate to achieve the grinding affect
+  public float maxSpeed = 9f; // Maximum speed achieved on the rail
+  public float baseSpeed = 1f; // Your speed no matter what your velocity
+  public float speedFactor = 0.9f; // How much to reduce your velocity
+
+  [HideInInspector]
   public bool grinding;
+
   private Quaternion prevRotation;
+  private PlayerControl pControl;
 
 	// Use this for initialization
 	void Start () {
-    // player = GetComponent<PlayerCode>();
-    // player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
+    pControl = GetComponent<PlayerControl>();
+    pControl.PlayerBeforeJump += OnPlayerBeforeJump;
     grinding = false;
   }
   
@@ -22,8 +26,9 @@ public class PlayerGrind : MonoBehaviour {
     }
 	}
 
-  void OnPlayerJump( object sender, System.EventArgs e ){
-    print("Grind: Player Jump");
+  public void OnPlayerBeforeJump( object sender ){
+    print("OnPlayerBeforeJump");
+    leaveGrindMode();
   }
 
   public bool isGrinding(){
