@@ -11,7 +11,15 @@ public class Obstacle1Script : MonoBehaviour {
 
 			//Do some damage stuff
 
-			//Turn on the particle effect
+
+			other.GetComponent<PlayParticle>().PlayBoneExplosion();
+
+//			if ( other.gameObject.GetComponent( typeof(PlayParticle) ) != null ) 
+//			{
+//				PlayParticle playParticleInstance = (PlayParticle) other.gameObject.GetComponent ( typeof(PlayParticle) );
+//				
+//				playParticleInstance.PlayBoneExplosion();
+//			}
 
 			//Destroy(gameObject);
 		}

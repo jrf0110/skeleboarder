@@ -7,13 +7,13 @@ public class PlayerGrind : MonoBehaviour {
   public float baseSpeed = 5f;
   public float speedFactor = 0.3f;
   public bool grinding;
-  private PlayerCode player;
+  //private PlayerCode player;
 
 	// Use this for initialization
 	void Start () {
-    player = GetComponent<Skate>();
+    //player = GetComponent<Skate>();
     grinding = false;
-    player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
+    //player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
   }
   
   public void FixedUpdate () {

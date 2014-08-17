@@ -53,6 +53,8 @@
      <Compile Include="Assets\Scripts\CheckForThings.cs" />
      <Compile Include="Assets\Scripts\FollowTrackingCamera.cs" />
      <Compile Include="Assets\Scripts\Obstacle1Script.cs" />
+     <Compile Include="Assets\Scripts\ParticleDestroyer.cs" />
+     <Compile Include="Assets\Scripts\PlayParticle.cs" />
      <Compile Include="Assets\Scripts\PlayerCodeVersion2.cs" />
      <Compile Include="Assets\Scripts\PlayerGrind.cs" />
      <Compile Include="Assets\Scripts\Powerup1Script.cs" />
