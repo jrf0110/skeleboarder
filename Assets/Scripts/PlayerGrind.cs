@@ -7,7 +7,6 @@ public class PlayerGrind : MonoBehaviour {
   public float baseSpeed;
   public float speedFactor;
   public bool grinding;
-  private PlayerCode player;
   private Quaternion prevRotation;
 
 	// Use this for initialization

@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour {
 	public bool allowMoveJumps  = false; 		// Whether or not to allow movement while jumping
 
 	public float moveForce  		= 100f;     // Amount of force added to move the player left and right.
-	public float maxSpeed   		= 1f;       // The fastest the player can travel in the x axis.
+	public float maxSpeed   		= 10f;      // The fastest the player can travel in the x axis.
 	public float jumpForce  		= 100f;    // Amount of force added when the player jumps.
 
 	private bool grounded   		= false;    // Whether or not the player is grounded.
@@ -31,7 +31,7 @@ public class PlayerControl : MonoBehaviour {
 			groundCheck.position,
 			1 << LayerMask.NameToLayer("Ground")
 		);
-
+print("grounded: " + grounded);
 		if ( Input.GetButtonDown("Jump") && grounded ){
 			jumping = true;
 		}
@@ -44,11 +44,12 @@ public class PlayerControl : MonoBehaviour {
 		// (h has a different sign to velocity.x)
 		// or hasn't reached maxSpeed yet
 		if ( grounded || allowMoveJumps )
-		if ( Mathf.Abs( h * rigidbody2D.velocity.x ) < maxSpeed ){
+		if ( h * rigidbody2D.velocity.x < maxSpeed ){
+			print("addingforce");
 			rigidbody2D.AddForce( Vector2.right * h * moveForce );
 		}
 
-		if ( Mathf.Abs( h * rigidbody2D.velocity.x ) > maxSpeed ){
+		if ( Mathf.Abs( rigidbody2D.velocity.x ) > maxSpeed ){
 			rigidbody2D.velocity = new Vector2(
 				( rigidbody2D.velocity.x < 0 ? -1 : 1 ) * maxSpeed
 			, rigidbody2D.velocity.y

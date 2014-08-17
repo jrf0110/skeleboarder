@@ -10,6 +10,7 @@ Library/expandedItems
 Library/metadata
 Library/previews
 Library/guidmapper
+Library/ShaderCache
 Temp
 *.pidb
 build
