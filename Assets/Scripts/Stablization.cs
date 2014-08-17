@@ -3,10 +3,17 @@ using System.Collections;
 
 public class Stablization : MonoBehaviour {
 
+<<<<<<< HEAD
 	//Movement Stuff
 	private float verticalInput;
 
 
+=======
+	public bool touchingPlatform;
+	public Transform groundCheck;
+	private float groundRadius = 0.1f;
+	public LayerMask whatIsGround;
+>>>>>>> 533cf8e56f98bdf6b59e099827b56ed94d93109b
 
 	//Physics stuff
 	Ray ray = new Ray(); 
@@ -24,6 +31,7 @@ public class Stablization : MonoBehaviour {
 	// Use this for initialization
 	void Start()
 	{
+<<<<<<< HEAD
 
 
 		//rigidbody2D.centerOfMass = centerOfMass.position - new Vector3(0,stablizationAmount,0);
@@ -35,6 +43,10 @@ public class Stablization : MonoBehaviour {
 
 	
 
+=======
+		rigidbody2D.centerOfMass = centerOfMass.position - new Vector3(0,.5f,0);
+	}
+>>>>>>> 533cf8e56f98bdf6b59e099827b56ed94d93109b
 
 	void RotateToPerpendicular()
 	{
@@ -53,29 +65,24 @@ public class Stablization : MonoBehaviour {
 		}
 	}
 	
-	
-	//==================UPDATE!!!!======================
-	
-	//==================================================
-	
-	//==================================================
 	void Update () 
 	{
+<<<<<<< HEAD
 		rigidbody2D.centerOfMass = new Vector3(0,stablizationAmount,0);
 
 		verticalInput = Input.GetAxis("Vertical");
 		
+=======
+>>>>>>> 533cf8e56f98bdf6b59e099827b56ed94d93109b
 		RotateToPerpendicular ();
 	}
-	
-	//==================END=UPDATE======================
-	
-	//==================================================
-	
-	//==================================================
-	
+
 	void FixedUpdate()
 	{	
+<<<<<<< HEAD
 			transform.Rotate(0, 0, verticalInput * rotationSpeed * Time.deltaTime);
+=======
+		touchingPlatform = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+>>>>>>> 533cf8e56f98bdf6b59e099827b56ed94d93109b
 	}
 }
