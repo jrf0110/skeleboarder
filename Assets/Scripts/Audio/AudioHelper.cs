@@ -3,6 +3,11 @@ using System.Collections;
 
 public class AudioHelper : MonoBehaviour 
 {
+//	private bool tehAudioIsPlaying;
+//	private float time;
+//	private static bool timeslider;
+//	AudioHelper instance = new AudioHelper();
+
 	// over loads
 	public static void CreatePlayAudioObject(AudioClip aClip) {
 		CreatePlayAudioObject(aClip, 1.0f);
@@ -90,6 +95,8 @@ public class AudioHelper : MonoBehaviour
 			
 			Destroy (aObject);
 		}	
+
+
 	}
 	
 	// over loads
@@ -136,4 +143,21 @@ public class AudioHelper : MonoBehaviour
 		// return our AudioObject
 		return apObject;
 	}
+
+//	void Update()
+//	{
+//		if (timeslider) 
+//		{
+//			time += Time.deltaTime;
+//			print ("audio clip length: " + audio.clip.length);
+//			print ("time: " + time);
+//			if(audio.clip.length <= time)
+//			{
+//				print ("length is less than time");
+//			}
+//		}
+//
+//
+//		//if(aSource
+//	}
 }

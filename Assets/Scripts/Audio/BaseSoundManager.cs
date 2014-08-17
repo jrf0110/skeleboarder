@@ -3,10 +3,10 @@ using System.Collections;
 // Is the parent Base manager all other Managers will use AudioClips or other data from
 public class BaseSoundManager : MonoBehaviour
 {
-	// baseSoundManagerInstance of class (Singleton)
+	//baseSoundManagerInstance of class (Singleton)
 	public static BaseSoundManager baseSoundManagerInstance = null;
 
-	//public AnimationClip fadeClip;
+	public AnimationClip fadeClip;
 	// audio clips to play one time
 	public AudioClip collide;
 	public AudioClip win;
@@ -15,6 +15,13 @@ public class BaseSoundManager : MonoBehaviour
 	public AudioClip secret;
 	public AudioClip hitEnemy;
 	public AudioClip killEnemy;
+	public AudioClip level1Music;
+	public AudioClip getItem;
+	public AudioClip died;
+	public AudioClip gotHit;
+	public static GameObject level1MusicObject;
+
+	//public bool musicIsPlaying;
 
 	// declare baseSoundManagerInstance
 	void OnEnable()
@@ -25,6 +32,5 @@ public class BaseSoundManager : MonoBehaviour
 			DontDestroyOnLoad (this);
 		}
 	}
-
 
 }

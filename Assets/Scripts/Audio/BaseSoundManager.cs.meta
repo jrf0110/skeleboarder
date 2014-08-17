@@ -3,7 +3,7 @@ guid: e6b5ea9a58864433fa867630809d921d
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - fadeClip: {instanceID: 0}
+  - fadeClip: {fileID: 7400000, guid: e29178a161a5b4a7897b725d7b2535c8, type: 2}
   - collide: {fileID: 8300000, guid: b9fb14bbe4b8741689fa7e21cdbfafaf, type: 3}
   - win: {fileID: 8300000, guid: bdbf189e0fce6421fb55024d53925347, type: 3}
   - jump: {fileID: 8300000, guid: 6f7947064b15b4f52ab584a66ce524cc, type: 3}
@@ -11,6 +11,7 @@ MonoImporter:
   - secret: {fileID: 8300000, guid: 8b540b9ef22b24c24b293e8fbee9436f, type: 3}
   - hitEnemy: {fileID: 8300000, guid: 8ef1f17e104a34eae93849c41948bb60, type: 3}
   - killEnemy: {fileID: 8300000, guid: 090d3bbe580874a4c99e3e638a4683a5, type: 3}
+  - level1Music: {fileID: 8300000, guid: a67b10b6daa114e758f9f9abfeaf042c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

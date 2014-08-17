@@ -12,7 +12,7 @@ public class PlayerGrind : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-    player = GetComponent<PlayerCode>();
+    player = GetComponent<Skate>();
     grinding = false;
     player.PlayerJump += new PlayerActionEventHandler( OnPlayerJump );
   }
