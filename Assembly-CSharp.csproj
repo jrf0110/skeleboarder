@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\PlayerDamager.cs" />
      <Compile Include="Assets\Scripts\PlayerGrind.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
+     <Compile Include="Assets\Scripts\Popup.cs" />
      <Compile Include="Assets\Scripts\Powerup1Script.cs" />
      <Compile Include="Assets\Scripts\RailEdge.cs" />
      <Compile Include="Assets\Scripts\RailGrind.cs" />
