@@ -2,11 +2,11 @@
 using System.Collections;
 
 public class PlayerGrind : MonoBehaviour {
-  public float rotation = 60; // How much we rotate to achieve the grinding affect
-  public float maxSpeed = 9; // Maximum speed achieved on the rail
-  public float baseSpeed = 1; // Your speed no matter what your velocity
-  public float speedFactor = 0.9; // How much to reduce your velocity
-  
+  public float rotation = 60f; // How much we rotate to achieve the grinding affect
+  public float maxSpeed = 9f; // Maximum speed achieved on the rail
+  public float baseSpeed = 1f; // Your speed no matter what your velocity
+  public float speedFactor = 0.9f; // How much to reduce your velocity
+
   [HideInInspector]
   public bool grinding;
 
