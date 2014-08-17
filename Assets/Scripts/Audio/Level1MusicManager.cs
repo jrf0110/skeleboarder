@@ -16,6 +16,6 @@ public class Level1MusicManager : MonoBehaviour {
 			(BaseSoundManager.baseSoundManagerInstance.level1Music, true, null, "Audio-Level1Music");
 
 		// 2. play the clip with fade in
-		StartCoroutine (AudioHelper.FadeAudioObject (BaseSoundManager.level1MusicObject, -0.25f));
+		StartCoroutine (AudioHelper.FadeAudioObject (BaseSoundManager.level1MusicObject, 0.25f));
 	}
 }
