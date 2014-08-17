@@ -4,6 +4,7 @@ using System.Collections;
 public static class MessageFlasher {
   public static void Flash( string msg ){
     GameObject layer = GameObject.Find("MessageFlasher");
+    if ( layer == null ) return;
     layer.GetComponent<GUIText>().text = msg;
   }
 
