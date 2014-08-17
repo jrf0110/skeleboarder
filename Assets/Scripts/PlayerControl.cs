@@ -10,7 +10,8 @@ public class PlayerControl : MonoBehaviour {
 	[HideInInspector]
 	public bool jumping     		= false;    // Condition for whether the player should jump.
 
-	public float jumpMoveFactor = 0.1f;		// Amount of control the player has of dx in the air
+	// Amount of control the player has of dx in the air
+	public float jumpMoveFactor = 0.1f;
 
 	public float moveForce  		= 100f;     // Amount of force added to move the player left and right.
 	public float maxSpeed   		= 10f;      // The fastest the player can travel in the x axis.
@@ -18,9 +19,8 @@ public class PlayerControl : MonoBehaviour {
 	public float rotationSpeed 	= 300.0f;   // Rotation speed
 
 	private bool grounded   		= false;    // Whether or not the player is grounded.
-	//private Transform groundCheck;					// A position marking where to check if the player is grounded.
-	//private Animator anim;									// Reference to the player's animator component.
-	private GameObject groundCheck;
+	//private Animator anim;								// Reference to the player's animator component.
+	private Transform groundCheck;					// A position marking where to check if the player is grounded.
 
 	// Events
 	public event PlayerActionHandler PlayerBeforeJump;
@@ -28,10 +28,9 @@ public class PlayerControl : MonoBehaviour {
 
 	//Animation Stuff
 	private tk2dSpriteAnimator playerAnimator;
-	private float horizontalInput;
 	
 	void Awake (){
-		groundCheck = GameObject.FindGameObjectWithTag("GroundCheck");
+		groundCheck = transform.Find("GroundCheck");
 		//anim = GetComponentInChildren<Animator>();
 
 		//Animation
@@ -62,10 +61,10 @@ public class PlayerControl : MonoBehaviour {
 		// (h has a different sign to velocity.x)
 		// or hasn't reached maxSpeed yet
 		if ( h * rigidbody2D.velocity.x < maxSpeed ){
-			print("Rotation " + transform.rotation.x);
+			print("x,y: " + Mathf.Cos(transform.rotation.x) + " " +  Mathf.Sin(transform.rotation.y));
 			rigidbody2D.AddForce(
 				new Vector2(
-					1, 0
+					Mathf.Cos(transform.rotation.x), Mathf.Sin(transform.rotation.y)
 				) * h * moveForce * ( !grounded ? jumpMoveFactor : 1 )
 			);
 		}
@@ -98,22 +97,20 @@ public class PlayerControl : MonoBehaviour {
 			}
 		}
 
-
-		horizontalInput = h;
-
-//		// Handle rotation
-//		if ( v > 0 || v < 0 ){
-//			transform.Rotate(
-//				0
-//			, 0
-//			, v * rotationSpeed * Time.deltaTime * ( facingRight ? 1 : -1 )
-//			);
-//		}
+		// Handle rotation
+		if ( v > 0 || v < 0 ){
+			transform.Rotate(
+				0
+			, 0
+			, v * rotationSpeed * Time.deltaTime * ( facingRight ? 1 : -1 )
+			);
+		}
 	}
 
 	void TurnRight (){
 		if ( facingRight ) return;
 
+		MessageFlasher.Flash("Turned Right!");
 		facingRight = true;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
@@ -123,33 +120,26 @@ public class PlayerControl : MonoBehaviour {
 	void TurnLeft (){
 		if ( !facingRight ) return;
 
+		MessageFlasher.Flash("Turned Left!");
 		facingRight = false;
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;
 		transform.localScale = theScale;
 	}
 	
-	void UpdateAnimation()
-	{
-		if(grounded && horizontalInput == 0) 
-		{
+	void UpdateAnimation(){
+		if ( playerAnimator == null ) return;
+
+		float horizontalInput = Input.GetAxis("Horizontal");
+
+		if ( grounded && horizontalInput == 0 ){
 			playerAnimator.Play("Idle");
-		}
-		
-		if (!grounded && rigidbody2D.velocity.y != 0)
-		{
+		} else if ( !grounded && rigidbody2D.velocity.y != 0 ){
 			playerAnimator.Play("Jump");
-		}
-
-		else if (!grounded &&  rigidbody2D.velocity.x != 0)
-		{
+		} else if ( !grounded && rigidbody2D.velocity.x != 0 ){
 			playerAnimator.Play("Idle");
-		}
-
-		if (grounded &&  Mathf.Abs( horizontalInput) > 0)
-		{
+		} else if (grounded &&  Mathf.Abs( horizontalInput) > 0){
 			playerAnimator.Play("Kicking");
 		}
 	}
-
 }

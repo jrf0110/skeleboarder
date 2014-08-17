@@ -2,26 +2,13 @@
 using System.Collections;
 
 public class Stablization : MonoBehaviour {
-	
-	//Movement Stuff
-	private float verticalInput;
-	
 	//Physics stuff
 	Ray ray = new Ray(); 
 	RaycastHit hit; 
 	Vector3 axis; 
 	float angle;
-	//public Transform centerOfMass;
-	public float stablizationAmount = -.5f;
+	public float stablizationAmount = .5f;
 
-	//Rotation Stuff
-	public float rotationSpeed = 300.0f;
-	
-	// Use this for initialization
-	void Start()
-	{
-		//rigidbody2D.centerOfMass = centerOfMass.position - new Vector3(0,stablizationAmount,0);
-	}
 	
 	void RotateToPerpendicular()
 	{
@@ -43,14 +30,6 @@ public class Stablization : MonoBehaviour {
 	void Update () 
 	{
 		rigidbody2D.centerOfMass = new Vector3(0,stablizationAmount,0);
-
-		verticalInput = Input.GetAxis("Vertical");
-
 		RotateToPerpendicular ();
-	}
-
-	void FixedUpdate()
-	{	
-			transform.Rotate(0, 0, verticalInput * rotationSpeed * Time.deltaTime);
 	}
 }
