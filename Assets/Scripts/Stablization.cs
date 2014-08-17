@@ -15,7 +15,14 @@ public class Stablization : MonoBehaviour {
 		rigidbody2D.centerOfMass = new Vector3(0,stablizationAmount,0);
 		pGrind = GetComponent<PlayerGrind>();
 	}
-	
+
+
+
+	/*
+	cast a ray from player.transform down.
+	take the inverse(-) of the normal of the surface you hit use those to find the axis of rotation and the angle,
+	this will rotate the character so his feet are always parallel with the ground.
+	*/
 	void RotateToPerpendicular()
 	{
 		ray.origin = gameObject.transform.position;
@@ -32,6 +39,8 @@ public class Stablization : MonoBehaviour {
 			gameObject.transform.Rotate(axis,angle);
 		}
 	}
+
+	//TRY AN SLERP FOR GRADUAL ROTATION
 	
 	void Update () 
 	{
