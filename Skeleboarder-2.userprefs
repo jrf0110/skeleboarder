@@ -1,15 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Powerup1Script.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/DestroyMeOnTouch.cs">
     <Files>
-      <File FileName="Assets/Scripts/Stablization.cs" Line="43" Column="1" />
       <File FileName="Assets/Scripts/Audio/Level1MusicManager.cs" Line="22" Column="1" />
       <File FileName="Assets/Scripts/PlayerControl.cs" Line="138" Column="4" />
-      <File FileName="Assets/Scripts/PlayerCodeVersion2.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/CameraZoomer.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Stablization.cs" Line="43" Column="1" />
-      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="67" Column="1" />
-      <File FileName="Assets/Scripts/Powerup1Script.cs" Line="23" Column="4" />
+      <File FileName="Assets/Scripts/PlayerHealth.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Powerup1Script.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Popup.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/PlayerDamager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/DestroyMeOnTouch.cs" Line="13" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
