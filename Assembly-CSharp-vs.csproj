@@ -46,8 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\GUI\Playing\GameplayGUI.cs" />
      <Compile Include="Assets\GUI\Title\TitleGUI.cs" />
-     <Compile Include="Assets\Opacity.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioHelper.cs" />
      <Compile Include="Assets\Scripts\Audio\BaseSoundManager.cs" />
      <Compile Include="Assets\Scripts\Audio\Level1MusicManager.cs" />
@@ -59,6 +59,8 @@
      <Compile Include="Assets\Scripts\DestroyMeOnTouch.cs" />
      <Compile Include="Assets\Scripts\FollowTrackingCamera.cs" />
      <Compile Include="Assets\Scripts\MessageFlasher.cs" />
+     <Compile Include="Assets\Scripts\Opacity.cs" />
+     <Compile Include="Assets\Scripts\Parallax.cs" />
      <Compile Include="Assets\Scripts\ParticleDestroyer.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\PlayerDamager.cs" />

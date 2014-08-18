@@ -10,14 +10,14 @@ public class TitleGUI : MonoBehaviour {
 	void OnEnable()
 	{
 		if (startBtn) {startBtn.OnClick += LoadLevel1;}
-		if (optBtn) {startBtn.OnClick += LoadLevel1;}
-		if (exitBtn) {startBtn.OnClick += LoadLevel1;}
+		if (optBtn) {optBtn.OnClick += LoadLevel1;}
+		if (exitBtn) {exitBtn.OnClick += LoadLevel1;}
 	}
 
 
 	private void LoadLevel1()
 	{
-		Application.LoadLevel("Level1");
+		Application.LoadLevel("TileAndObjectLibrary");
 	}
 
 
