@@ -44,6 +44,12 @@ public class PlayerHealth : MonoBehaviour {
   }
 
   void OnTriggerEnter2D ( Collider2D col ){
+
+		if (col.gameObject.tag == "DeathField") {
+			health = 0;
+				
+		}
+
     // Does the collider have the PlayerDamager component?
     PlayerDamager giver = col.GetComponent<PlayerDamager>();
     if ( giver == null ) return;
