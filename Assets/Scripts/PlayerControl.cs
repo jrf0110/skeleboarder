@@ -29,6 +29,9 @@ public class PlayerControl : MonoBehaviour {
 
 	//Animation Stuff
 	private tk2dSpriteAnimator playerAnimator;
+
+	//ForDeath
+	private PlayerHealth playerHealth;
 	
 	void Awake (){
 		groundCheck = transform.Find("GroundCheck");
@@ -37,9 +40,17 @@ public class PlayerControl : MonoBehaviour {
 
 		//Animation
 		playerAnimator = GetComponentInChildren<tk2dSpriteAnimator>();
+
+	}
+
+	void Start()
+	{
+		playerHealth = GameObject.FindGameObjectWithTag ("Skateboard").GetComponent<PlayerHealth>();
 	}
 
 	void Update () {
+
+
 		// The player is grounded if a linecast to the
 		// groundcheck position hits anything on the ground layer
 		grounded = Physics2D.Linecast(
@@ -56,58 +67,60 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		float h = Input.GetAxis("Horizontal");
-		float v = Input.GetAxis("Vertical");
+		if (playerHealth.isActive) {
+						float h = Input.GetAxis ("Horizontal");
+						float v = Input.GetAxis ("Vertical");
 
-		// If the player is changing direction
-		// (h has a different sign to velocity.x)
-		// or hasn't reached maxSpeed yet
-		if ( h * rigidbody2D.velocity.x < maxSpeed ){
-			rigidbody2D.AddForce(
-				new Vector2(
-					Mathf.Cos(transform.rotation.x), Mathf.Sin(transform.rotation.y)
-				) * h * moveForce * ( !grounded ? jumpMoveFactor : 1 )
-			);
-		}
+						// If the player is changing direction
+						// (h has a different sign to velocity.x)
+						// or hasn't reached maxSpeed yet
+						if (h * rigidbody2D.velocity.x < maxSpeed) {
+								rigidbody2D.AddForce (
+				new Vector2 (
+					Mathf.Cos (transform.rotation.x), Mathf.Sin (transform.rotation.y)
+								) * h * moveForce * (!grounded ? jumpMoveFactor : 1)
+								);
+						}
 
-		if ( Mathf.Abs( rigidbody2D.velocity.x ) > maxSpeed ){
-			rigidbody2D.velocity = new Vector2(
-				( rigidbody2D.velocity.x < 0 ? -1 : 1 ) * maxSpeed
+						if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed) {
+								rigidbody2D.velocity = new Vector2 (
+				(rigidbody2D.velocity.x < 0 ? -1 : 1) * maxSpeed
 			, rigidbody2D.velocity.y
-			);
-		}
+								);
+						}
 
-		// Correct character direction
-		if ( h > 0 && !facingRight ){
-			TurnRight();
-		} else if ( h < 0 && facingRight ){
-			TurnLeft();
-		}
+						// Correct character direction
+						if (h > 0 && !facingRight) {
+								TurnRight ();
+						} else if (h < 0 && facingRight) {
+								TurnLeft ();
+						}
 
-		// Handle jumping
-		if ( jumping ){
-			if ( PlayerBeforeJump != null ){
-				PlayerBeforeJump( this );
-			}
+						// Handle jumping
+						if (jumping) {
+								if (PlayerBeforeJump != null) {
+										PlayerBeforeJump (this);
+								}
 
-			AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.jump, 1f, "jumpSndObj");
-			rigidbody2D.AddForce( new Vector2( 0f, jumpForce ) );
-			jumping = false;
+								AudioHelper.CreatePlayAudioObject (BaseSoundManager.baseSoundManagerInstance.jump, 1f, "jumpSndObj");
+								rigidbody2D.AddForce (new Vector2 (0f, jumpForce));
+								jumping = false;
 
-			if ( PlayerAfterJump != null ){
-				PlayerAfterJump( this );
-			}
-		}
+								if (PlayerAfterJump != null) {
+										PlayerAfterJump (this);
+								}
+						}
 
-		// Handle rotation
-		// Do not rotate while grinding
-		if ( !pGrind.isGrinding() && (v > 0 || v < 0) ){
-			transform.Rotate(
+						// Handle rotation
+						// Do not rotate while grinding
+						if (!pGrind.isGrinding () && (v > 0 || v < 0)) {
+								transform.Rotate (
 				0
 			, 0
-			, v * rotationSpeed * Time.deltaTime * ( facingRight ? 1 : -1 )
-			);
-		}
+			, v * rotationSpeed * Time.deltaTime * (facingRight ? 1 : -1)
+								);
+						}
+				}
 	}
 
 	void TurnRight (){

@@ -20,7 +20,6 @@ public class BaseSoundManager : MonoBehaviour
 	public AudioClip gotHit;
 	public AudioClip linkGotItem;
 	public AudioClip cannonRamp;
-
 	//Music
 	public AudioClip level1Music;
 	public AudioClip titleMusic;

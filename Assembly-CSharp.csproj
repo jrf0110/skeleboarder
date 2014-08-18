@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\Audio\Level1MusicManager.cs" />
      <Compile Include="Assets\Scripts\Audio\MuteSound.cs" />
      <Compile Include="Assets\Scripts\Audio\TitleScreenMusicManager.cs" />
+     <Compile Include="Assets\Scripts\BoneText.cs" />
      <Compile Include="Assets\Scripts\CameraZoomer.cs" />
      <Compile Include="Assets\Scripts\CannonRamp.cs" />
      <Compile Include="Assets\Scripts\CheckForThings.cs" />
@@ -70,8 +71,12 @@
      <Compile Include="Assets\Scripts\Powerup1Script.cs" />
      <Compile Include="Assets\Scripts\RailEdge.cs" />
      <Compile Include="Assets\Scripts\RailGrind.cs" />
+     <Compile Include="Assets\Scripts\ResetLevel.cs" />
      <Compile Include="Assets\Scripts\Rubble.cs" />
      <Compile Include="Assets\Scripts\Stablization.cs" />
+     <Compile Include="Assets\Scripts\WinField.cs" />
+     <Compile Include="Assets\Scripts\YouDiedGUI.cs" />
+     <Compile Include="Assets\Scripts\YouWinGUI.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCamera.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraAnchor.cs" />
      <Compile Include="Assets\TK2DROOT\tk2d\Code\Camera\tk2dCameraUtil.cs" />
