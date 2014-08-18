@@ -47,6 +47,7 @@ public class PlayerHealth : MonoBehaviour {
 
 		if (col.gameObject.tag == "DeathField") {
 			health = 0;
+			isActive = false;
 				
 		}
 

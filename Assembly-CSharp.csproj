@@ -46,8 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\GUI\Playing\GameplayGUI.cs" />
-     <Compile Include="Assets\GUI\Title\TitleGUI.cs" />
      <Compile Include="Assets\Scripts\Audio\AudioHelper.cs" />
      <Compile Include="Assets\Scripts\Audio\BaseSoundManager.cs" />
      <Compile Include="Assets\Scripts\Audio\Level1MusicManager.cs" />
@@ -59,6 +57,8 @@
      <Compile Include="Assets\Scripts\CheckForThings.cs" />
      <Compile Include="Assets\Scripts\DestroyMeOnTouch.cs" />
      <Compile Include="Assets\Scripts\FollowTrackingCamera.cs" />
+     <Compile Include="Assets\Scripts\GameplayGUI.cs" />
+     <Compile Include="Assets\Scripts\LockToZero.cs" />
      <Compile Include="Assets\Scripts\MessageFlasher.cs" />
      <Compile Include="Assets\Scripts\Opacity.cs" />
      <Compile Include="Assets\Scripts\Parallax.cs" />
@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\ResetLevel.cs" />
      <Compile Include="Assets\Scripts\Rubble.cs" />
      <Compile Include="Assets\Scripts\Stablization.cs" />
+     <Compile Include="Assets\Scripts\TitleGUI.cs" />
      <Compile Include="Assets\Scripts\WinField.cs" />
      <Compile Include="Assets\Scripts\YouDiedGUI.cs" />
      <Compile Include="Assets\Scripts\YouWinGUI.cs" />

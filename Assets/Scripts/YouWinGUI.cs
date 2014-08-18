@@ -5,13 +5,14 @@ public class YouWinGUI : MonoBehaviour {
 
 	private WinField winField;
 	public GameObject WinGUIHolder;
-
+	private PlayerHealth playerHealth;
 	private bool madeWinGUI;
 	
 
 	// Use this for initialization
 	void Start () {
 		winField = GameObject.FindGameObjectWithTag ("WinField").GetComponent<WinField>();
+		playerHealth = GameObject.FindGameObjectWithTag ("Skateboard").GetComponent<PlayerHealth> ();
 		madeWinGUI = false;
 	}
 	
@@ -20,7 +21,7 @@ public class YouWinGUI : MonoBehaviour {
 		if (winField.victory) {
 		if(!madeWinGUI)
 			{
-
+				playerHealth.isActive = false;
 				//Instantiate(WinGUIHolder);
 				WinGUIHolder.SetActive(true);
 				madeWinGUI = true;

@@ -49,7 +49,9 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void Update () {
-
+		if (!playerHealth.isActive) {
+			transform.position = Vector2.zero;
+				}
 
 		// The player is grounded if a linecast to the
 		// groundcheck position hits anything on the ground layer

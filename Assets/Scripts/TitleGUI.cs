@@ -17,7 +17,7 @@ public class TitleGUI : MonoBehaviour {
 
 	private void LoadLevel1()
 	{
-		Application.LoadLevel("TileAndObjectLibrary");
+		Application.LoadLevel(Application.loadedLevel + 1);
 	}
 
 
