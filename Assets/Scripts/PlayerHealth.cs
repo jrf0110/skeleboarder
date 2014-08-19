@@ -30,36 +30,44 @@ public class PlayerHealth : MonoBehaviour {
     PlayerDamager giver = col.gameObject.GetComponent<PlayerDamager>();
     if ( giver == null ) return;
 
-		if (col.gameObject.tag == "Powerup1") {
+		if (col.gameObject.tag == "Powerup1") 
+		{
 			print ("hit a powerup!");
-						TakeDamage (giver.damageAmount);
-				} else {
-						// Ensure we can still damage
-						if (Time.time <= lastHitTime + repeatDmgPeriod)
-								return;
+			TakeDamage (giver.damageAmount);
+		} 
+		else 
+		{
+			// Ensure we can still damage
+			if (Time.time <= lastHitTime + repeatDmgPeriod)
+					return;
 
-						TakeDamage (giver.damageAmount);
-						lastHitTime = Time.time;
-				}
+			TakeDamage (giver.damageAmount);
+			lastHitTime = Time.time;
+		}
   }
 
-  void OnTriggerEnter2D ( Collider2D col ){
-
-		if (col.gameObject.tag == "DeathField") {
+  void OnTriggerEnter2D ( Collider2D col )
+	{
+		if (col.gameObject.tag == "DeathField") 
+		{
 			health = 0;
 			isActive = false;
-				
+			
 		}
-
-    // Does the collider have the PlayerDamager component?
+    
+	// Does the collider have the PlayerDamager component?
     PlayerDamager giver = col.GetComponent<PlayerDamager>();
     if ( giver == null ) return;
     
     // Ensure we can still damage
 		if (col.gameObject.tag == "Powerup1") {
-			print ("hit a powerup!");
+			//print ("hit a powerup!");
 			TakeDamage (giver.damageAmount);
-		} else {
+		} 
+
+
+
+		else {
 			// Ensure we can still damage
 			if (Time.time <= lastHitTime + repeatDmgPeriod)
 				return;
