@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\ResetLevel.cs" />
      <Compile Include="Assets\Scripts\Rubble.cs" />
      <Compile Include="Assets\Scripts\Stablization.cs" />
+     <Compile Include="Assets\Scripts\StayInPlace.cs" />
      <Compile Include="Assets\Scripts\TitleGUI.cs" />
      <Compile Include="Assets\Scripts\WinField.cs" />
      <Compile Include="Assets\Scripts\YouDiedGUI.cs" />
