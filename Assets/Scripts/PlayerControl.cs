@@ -32,9 +32,14 @@ public class PlayerControl : MonoBehaviour {
 
 	//ForDeath
 	private PlayerHealth playerHealth;
+
+	//Debug stuff
+	public float speed;
+	private GUIText speedText;
 	
 	void Awake (){
 		groundCheck = transform.Find("GroundCheck");
+		speedText = transform.Find("SpeedText").GetComponent<GUIText>();
 		pGrind = GetComponent<PlayerGrind>();
 		//anim = GetComponentInChildren<Animator>();
 
@@ -45,7 +50,7 @@ public class PlayerControl : MonoBehaviour {
 
 	void Start()
 	{
-		playerHealth = GameObject.FindGameObjectWithTag ("Skateboard").GetComponent<PlayerHealth>();
+		playerHealth = GetComponent<PlayerHealth>();
 	}
 
 	void Update () {
@@ -69,6 +74,10 @@ public class PlayerControl : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+
+		speed = rigidbody2D.velocity.x;
+		speedText.text = "Speed " + speed.ToString();
+
 		if (playerHealth.isActive) {
 						float h = Input.GetAxis ("Horizontal");
 						float v = Input.GetAxis ("Vertical");
@@ -84,12 +93,13 @@ public class PlayerControl : MonoBehaviour {
 								);
 						}
 
-						if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed) {
-								rigidbody2D.velocity = new Vector2 (
-				(rigidbody2D.velocity.x < 0 ? -1 : 1) * maxSpeed
-			, rigidbody2D.velocity.y
-								);
-						}
+			//Lock the character to max speed if it has been hit
+			if (Mathf.Abs (rigidbody2D.velocity.x) > maxSpeed) 
+			{
+				float slowDownXVelocity = (rigidbody2D.velocity.x < 0 ? -1 : 1) * maxSpeed;
+				rigidbody2D.velocity = new Vector2(Mathf.Lerp(rigidbody2D.velocity.x, slowDownXVelocity, Time.deltaTime*.7f), rigidbody2D.velocity.y);
+
+			}
 
 						// Correct character direction
 						if (h > 0 && !facingRight) {
@@ -119,7 +129,7 @@ public class PlayerControl : MonoBehaviour {
 								transform.Rotate (
 				0
 			, 0
-			, v * rotationSpeed * Time.deltaTime * (facingRight ? 1 : -1)
+			, v * rotationSpeed * Time.deltaTime * (facingRight ? -1 : 1)
 								);
 						}
 				}

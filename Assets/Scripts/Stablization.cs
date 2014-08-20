@@ -34,7 +34,10 @@ public class Stablization : MonoBehaviour {
 		{
 			angle = Mathf.Atan2(Vector3.Magnitude(axis), Vector3.Dot(-gameObject.transform.forward,-hit.normal));
 			//print("angle");
-			gameObject.transform.Rotate(axis,angle);
+			//Vector3 currentRotation = transform.position;
+			//Vector3 desiredRotation = gameObject.transform.Rotate(axis,angle);
+			//Vector3.Slerp( currentRotation, desiredRotation, Time.deltaTime);
+			gameObject.transform.Rotate(axis * Time.deltaTime ,angle);
 		}
 	}
 
